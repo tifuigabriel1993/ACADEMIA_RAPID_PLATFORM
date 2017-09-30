@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/layout"
+	th:with="title='Academia Rapid - Noutati'">
+
+<th:block layout:fragment="newsfeed">
+	<div class="newsfeed-mc col-md-6">
+				<img class="img-header-ticket" th:src="@{../images/stadion-ticket.jpg}"/>
+				<div class="squad-tabs">
+					<a  class="squad-category-button active text-center">SEP</a>
+					<a  class="squad-category-button text-center">OCT</a>
+					<a  class="squad-category-button text-center">NOI</a>
+				</div>
+				<div class="tickets" style="padding-bottom: 100px">
+					<div class="tickets-container">
+						<div class="ticket-header">
+							<div class="ticket-date">
+								<p class="ticket-datecal">15 Sept. 2017</p>
+								<p class="ticket-hour">Ora: nestabilit</p>
+							</div>
+							<div class="ticket-teams-info">
+								<p class="ticket-teams-names">CS Victoria vs Academia Rapid</p>
+								<p class="ticket-competition">Liga 4</p>
+								<p class="ticket-stadium">Stadion: - </p>
+							</div>
+							<div class="ticket-teams-images">
+								<div class="text-right ticket-teams-images__placeholder">
+									<img class="ticket-team-image" th:src="@{../images/echipe/logos/victoria.png}"/>
+									<img class="ticket-team-image" th:src="@{../images/echipe/logos/rapid.png}" width="100" height="90"/>
+								</div>
+							</div>
+						</div>
+						<div class="ticket-body">
+							<p class="ticket-body-title">Aceasta partida se desfasoara in cadrul etapei a 4-a a ligii a 4-a.</p>
+							<p class="ticket-body-content">Biletele se pot achizitiona de la casele de bilete ale stadionului Valentin Stanescu sau online prin intermediul Eventim.</p>
+							<div class="ticket-actions text-right">
+								<button type="button" class="btn btn-secondary">INFORMATII</button>
+								<button type="button" class="buy-ticket btn btn-primary"
+									onclick="window.open('http://www.eventim.ro/ro/bilete/academia-rapid-sezon-2017-2018-calea-giulesti-nr-18-bucuresti-stadionul-valentin-stanescu-987519/performance.html')">CUMPARA</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="newsfeed-sidebar-right col-md-3">
+			<div class="nf-standings">
+				<p class="standings__title">Clasament</p>
+				<div class="standings__container">
+					<div class="row standing-table-row legend">
+						<span
+							class="standing-table-row-index col-md-2 col-2 col-sm-2 col-2 col-sm-2">#</span>
+						<span class="col-md-7 col-7 col-sm-7">Echipa</span> <span
+							class="col-md-3 col-3 col-sm-3">Pct</span>
+					</div>
+					<div class="row playoff standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">1</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">CSA Steaua</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">2</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/rapid.png}"
+								class="standings-team-image" /> <span class="">Academia Rapid</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">3</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">AFC Carmen</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">4</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">AS Tricolor</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">5</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">Comprest GIM</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">7</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">6</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">AFC Asalt</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">7</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">7</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">Progresul Spartac</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">6</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">8</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">A.S. Romprim</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">4</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">9</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">Metaloglobus</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">3</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">10</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">FC Dinamo</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">3</span>
+					</div>
+				</div>
+			</div>
+		</div>
+</th:block>
+</html>

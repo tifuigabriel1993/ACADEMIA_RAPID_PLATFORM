@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/layout"
+	th:with="title='Academia Rapid - Noutati'">
+
+<th:block layout:fragment="newsfeed">
+	<script th:src="@{../assets/js/my-profile.js}" />
+	<script>
+		/*<![CDATA[*/
+		$(document).ready(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document)
+				.on(
+						'click',
+						function(e) {
+							$('[data-toggle="popover"],[data-original-title]')
+									.each(
+											function() {
+												//the 'is' for buttons that trigger popups
+												//the 'has' for icons within a button that triggers a popup
+												if (!$(this).is(e.target)
+														&& $(this)
+																.has(e.target).length === 0
+														&& $('.popover').has(
+																e.target).length === 0) {
+													(($(this).popover('hide')
+															.data('bs.popover') || {}).inState || {}).click = false // fix for BS 3.3.6
+												}
+											});
+						});
+		/*]]>*/
+	</script>
+	<div class="newsfeed-mc col-md-9">
+		<div class="squad-tabs">
+			<a class="squad-category-button active text-center">Profil</a> <a
+				class="squad-category-button text-center">Setari</a>
+		</div>
+		<div class="tickets edit-profile">
+			<div class="edit-profile-container">
+				<div class="content">
+					<form>
+						<div class="row">
+							<div class="col-sm-4 col-md-4 col-xl-3 change-image-avatar">
+								<div class="my-account-image__placeholder">
+									<div id="photoProfile" style="display: none"
+										sec:authentication="principal.userDto.profilePhotoUrl" />
+									<div class="my-account-image-image">
+										<img id='img-upload' th:src="@{../assets/images/nobody.jpg}" />
+									</div>
+									<script th:inline="javascript">
+										/*<![CDATA[*/
+										var photo_url = $("#photoProfile")
+												.text();
+										if(photo_url != "NO_PHOTO") {
+											$("#img-upload").attr("src", photo_url);
+										}
+										/*]]>*/
+									</script>
+								</div>
+								<div class="change-image-content">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-btn"> <span
+												class="btn btn-default btn-file"> <label
+													class="change-img-label" for="imgInp"><i
+														class="fa-user-img-icon fa fa-plus-circle"
+														aria-hidden="true"></i>Schimba imaginea</label>
+											</span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-8 col-md-8 col-xl-9">
+								<div class="change-image__profile-info">
+									<p class="profile-information">
+										Username: <span class="profile-info-var"
+											th:text="${profile.username}"> </span>
+									</p>
+									<p class="profile-information">
+										Email: <span class="profile-info-var"
+											th:text="${profile.email}"> </span>
+									</p>
+									<p class="profile-information">
+										Comentarii: <span class="profile-info-var">0</span>
+									</p>
+									<p class="profile-information profile-information--last">
+										Activitate: <span class="profile-info-var text-warning">scazuta<i
+											class="fa-left fa" aria-hidden="true"></i></span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="empty-row-2"></div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Nume</label> <input type="text" class="form-control"
+										style="height: 2.8em;" th:value="${profile.firstName}"
+										id="profile_first_name" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Prenume</label> <input type="text" class="form-control"
+										style="height: 2.8em;" th:value="${profile.secondName}"
+										id="profile_second_name" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Tara</label> <input type="text" class="form-control"
+										id="profile_country" style="height: 2.8em;"
+										th:value="${profile.address.country}" />
+								</div>
+								<div class="form-group">
+									<label>Oras</label> <input type="text" class="form-control"
+										id="profile_city" style="height: 2.8em;"
+										th:value="${profile.address.city}" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Sex</label> <input type="text" class="form-control"
+										id="profile_sex" style="height: 2.8em;"
+										th:value="${profile.sex}" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Despre mine</label>
+									<textarea rows="5" class="form-control" id="footballInfo" th:inline="text"
+										>[[${profile.footballInfo}]]</textarea>
+								</div>
+							</div>
+						</div>
+						<button type="submit" style="background-color: #640020;" onclick="updateProfile();"
+							class="btn btn-info btn-fill pull-right">Actualizeaza
+							profilul</button>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		/*<![CDATA[*/
+		$(document).ready(
+				function() {
+					$(document).on(
+							'change',
+							'.btn-file :file',
+							function() {
+								var input = $(this), label = input.val()
+										.replace(/\\/g, '/')
+										.replace(/.*\//, '');
+								input.trigger('fileselect', [ label ]);
+							});
+
+					$('.btn-file :file').on(
+							'fileselect',
+							function(event, label) {
+
+								var input = $(this).parents('.input-group')
+										.find(':text'), log = label;
+
+								if (input.length) {
+									input.val(log);
+								} else {
+									if (log)
+										alert(log);
+								}
+
+							});
+					function readURL(input) {
+						if (input.files && input.files[0]) {
+							var reader = new FileReader();
+
+							reader.onload = function(e) {
+								$('#img-upload').attr('src', e.target.result);
+							}
+
+							reader.readAsDataURL(input.files[0]);
+						}
+					}
+
+					$("#imgInp").change(function() {
+						readURL(this);
+					});
+				});
+		/*]]>*/
+	</script>
+</th:block>
+</html>

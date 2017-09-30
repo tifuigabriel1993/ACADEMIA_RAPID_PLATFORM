@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/admin-layout"
+	th:with="title='Academia Rapid - Administrare'">
+
+<th:block layout:fragment="content">
+	<script th:src="@{../assets/admin/js/admin-sport.js}" />
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<div class="form-group">
+					<label for="sel1">Selecteaza etapa:</label> <select
+						class="form-control" id="selected_league">
+						<option th:each="league : ${leagues}"
+							th:value="${league.leagueId}"
+							th:text="${league.leagueName}+' - '+${league.country}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<table class="table table-bordered table-hover" id="tab_logic">
+					<thead>
+						<tr>
+							<th class="text-center">#</th>
+							<th class="text-center">Echipa gazda</th>
+							<th class="text-center">Echipa oaspete</th>
+							<th class="text-center">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr id='match0'>
+							<td>1</td>
+							<td><input type="text" name='home_team_0'
+								placeholder='Gazde' class="form-control" /></td>
+							<td><input type="text" name='away_team_0'
+								placeholder='Oaspeti' class="form-control" /></td>
+							<td><input type="text" name='date0' placeholder='Data'
+								class="form-control" /></td>
+						</tr>
+						<tr id='addr1'></tr>
+					</tbody>
+				</table>
+				<button type="button" class="btn btn-success"
+					style="width: 100%; margin-top: 10px;">Adauga</button>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

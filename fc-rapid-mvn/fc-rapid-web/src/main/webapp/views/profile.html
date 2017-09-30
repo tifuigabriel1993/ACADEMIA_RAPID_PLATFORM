@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/layout"
+	th:with="title='Academia Rapid - Noutati'">
+<th:block layout:fragment="newsfeed">
+	<div class="newsfeed-mc col-md-6">
+		<div class="tickets">
+			<div class="row no-gutters profile-main-info">
+				<div class="col-xs-12 col-sm-9">
+					<h2 th:text="${profile.firstName}+' '+${profile.secondName}"></h2>
+					<p>
+						<strong style="font-weight: bold;">Rol: </strong> Suporter
+					</p>
+					<p>
+						<strong style="font-weight: bold;">Comentarii: </strong> 0
+					</p>
+					<p>
+						<strong style="font-weight: bold;">Activitate: </strong> <span
+							class="tags">scazuta</span>
+					</p>
+					<p style="margin-top: 50px">
+						<strong style="font-weight: bold;">Descriere: </strong> <span
+							th:text="${profile.footballInfo}" />
+					</p>
+				</div>
+				<div class="col-xs-12 col-sm-3 text-center">
+					<figure>
+						<div id="photoProfile" style="display: none"
+							th:text="${profile.photoUrl}" />
+						<div class="my-account-image-image2">
+							<img id='img-upload' th:src="@{../assets/images/nobody.jpg}"
+								style="height: 140px;" />
+						</div>
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+							var photo_url = $("#photoProfile").text();
+							if(photo_url != 'NO_PHOTO') {
+								$("#img-upload").attr("src", photo_url);
+							}
+							/*]]>*/
+						</script>
+						<figcaption class="ratings">
+							<p>
+								<a href="#"> <span class="fa fa-star"></span>
+								</a> <a href="#"> <span class="fa fa-star"></span>
+								</a> <a href="#"> <span class="fa fa-star"></span>
+								</a> <a href="#"> <span class="fa fa-star"></span>
+								</a> <a href="#"> <span class="fa fa-star-o"></span>
+								</a>
+							</p>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+			<div class="divider" />
+			<div class="col-xs-12 divider text-center row"
+				style="margin-top: 50px">
+				<div class="col-xs-12 col-sm-6 emphasis">
+					<h2>
+						<strong> 0 </strong>
+					</h2>
+					<p>
+						<small>Reputatie</small>
+					</p>
+					<button class="btn btn-secondary btn-block"
+						style="margin-top: 20px">
+						<span class="fa fa-plus-circle fa-right"></span> Raporteaza
+					</button>
+				</div>
+				<div class="col-xs-12 col-sm-6 emphasis">
+					<h2>
+						<strong>0</strong>
+					</h2>
+					<p>
+						<small>Postari</small>
+					</p>
+					<button class="btn btn-outline-secondary btn-block"
+						style="margin-top: 20px">
+						<span class="fa fa-user"></span> Trimite mesaj
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="newsfeed-sidebar-right col-md-3">
+		<div class="nf-upcoming-event">
+			<h3 class="upcoming-event-title text-center">ACTIVITATI RECENTE</h3>
+			<div class="activity-feed">
+				<th:block th:each="activity : ${profile.activities}">
+					<div class="feed-item">
+						<div class="date" th:text="${activity.activityDate}"/>
+						<div class="text">
+							<span th:text="${activity.activityDescription}"/>
+							<a th:href="${activity.activityUrl}">
+								<span th:text="${activity.activityTitle}"/>
+							</a>
+						</div>
+					</div>
+				</th:block>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

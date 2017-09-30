@@ -1,0 +1,31 @@
+<head xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<meta name="_csrf_parameterName" th:content="${_csrf.parameterName}" />
+
+<title>Academia Rapid Admin - Administrare</title>
+
+<link rel="icon" type="image/x-icon"
+	th:href="@{../assets/images/rapid-icon.ico}" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{../assets/css/bootstrap.min.css}" />
+
+<link th:href="@{../assets/admin/css/sb-admin.css}" rel="stylesheet" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" />
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js" />
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	crossorigin="anonymous" />
+
+</head>

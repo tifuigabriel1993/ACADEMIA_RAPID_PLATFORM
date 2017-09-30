@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ACADMIA RAPID</title>
+<meta charset="utf-8" />
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+<link rel="icon" type="image/x-icon"
+	th:href="@{../assets/images/rapid-icon.ico}" />
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.1.1/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"
+	rel="stylesheet" type="text/css" />
+
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.1.1/js/bootstrap.min.js}"></script>
+
+<!-- Theme -->
+<link href="../resources/assets/css/main.css"
+	th:href="@{assets/css/main.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{assets/css/plugins.css}" rel="stylesheet"
+	type="text/css" />
+<!-- Login -->
+<link th:href="@{assets/css/login.css}" rel="stylesheet" type="text/css" />
+<!-- App -->
+<script type="text/javascript" th:src="@{assets/js/register.js}"></script>
+<script>
+	$(document).ready(function() {
+		init(); // Checks fields on init
+	});
+</script>
+</head>
+<body class="login">
+	<!-- Logo -->
+	<div class="logo">
+		<strong>ACADEMIA</strong> RAPID
+	</div>
+	<!-- /Logo -->
+
+	<!-- Login Box -->
+	<div class="box">
+		<div class="content">
+			<!-- Register Formular (hidden by default) -->
+			<form id="registerForm" class="form-vertical register-form"
+				accept-charset="utf-8" role="form" th:action="@{inregistrare}"
+				th:object="${userWrapper}" method="post">
+				<h3 class="form-title">Inregistrare</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-user"></i> <input onfocusout="checkUsername()"
+									type="text" id="register_username" class="form-control"
+									name="reg_username" th:field="*{username}"
+									oninput="$('#usernameValidation').css('display', 'none')"
+									placeholder="Nume utilizator" autofocus="autofocus"
+									data-rule-required="true" />
+								<div class="alert-danger" id="register_username_checker">
+								</div>
+								<div id="usernameValidation">
+									<div class="alert-danger" th:errors="${userWrapper.username}">
+										<ul>
+											<li
+												th:each="err : ${#fields.errors('${userWrapper.username}')}"
+												th:text="${err}" />
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-envelope"></i> <input onfocusout="checkEmail();"
+									oninput="resetAndClear('#register_confirm_email', '#register_confirmemail_checker', '#emailValidation')"
+									type="text" id="register_email" class="form-control"
+									name="reg_email" th:field="*{email}" placeholder="Adresa email"
+									autofocus="autofocus" data-rule-required="true" />
+								<div class="alert-danger" id="register_email_checker"></div>
+								<div id="emailValidation">
+									<div class="alert-danger" th:errors="${userWrapper.email}">
+										<ul>
+											<li th:each="err : ${#fields.errors('${userWrapper.email}')}"
+												th:text="${err}" />
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-envelope"></i> <input type="text"
+									onfocusout="checkEqualsEmail();" id="register_confirm_email"
+									class="form-control" name="reg_confirmedEmail"
+									th:field="*{confirmedEmail}" placeholder="Confirma email-ul"
+									autofocus="autofocus" data-rule-required="true" />
+								<div class="alert-danger" id="register_confirmemail_checker"></div>
+								<div class="alert-danger"
+									th:errors="${userWrapper.confirmedEmail}">
+									<ul>
+										<li
+											th:each="err : ${#fields.errors('${userWrapper.confirmedEmail}')}"
+											th:text="${err}" />
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-lock"></i> <input id="register_password"
+									oninput="resetAndClear('#register_confirmpassword', '#register_confirmpassword_checker', '#passwordValidation')"
+									type="password" onfocusout="checkPassword();"
+									class="form-control" name="reg_password" th:field="*{password}"
+									placeholder="Parola" autofocus="autofocus"
+									data-rule-required="true" />
+								<div class="alert-danger" id="register_password_checker"></div>
+								<div id="passwordValidation">
+									<div class="alert-danger" th:errors="${userWrapper.password}">
+										<ul>
+											<li
+												th:each="err : ${#fields.errors('${userWrapper.password}')}"
+												th:text="${err}" />
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-lock"></i> <input
+									onfocusout="checkEqualPasswords();"
+									id="register_confirmpassword" type="password"
+									class="form-control" name="reg_password"
+									th:field="*{confirmedPassword}" placeholder="Confirma parola"
+									autofocus="autofocus" data-rule-required="true" />
+								<div class="alert-danger" id="register_confirmpassword_checker"></div>
+								<div class="alert-danger"
+									th:errors="${userWrapper.confirmedPassword}">
+									<ul>
+										<li
+											th:each="err : ${#fields.errors('${userWrapper.confirmedPassword}')}"
+											th:text="${err}" />
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-user"></i> <input type="text"
+									id="register_firstname" class="form-control"
+									name="reg_firstName" onfocusout="checkFirstName();"
+									oninput="resetAndClear('', '', '#nameValidation')"
+									th:field="*{firstName}" placeholder="Nume"
+									autofocus="autofocus" data-rule-required="true" />
+								<div class="alert-danger" id="register_firstname_checker"></div>
+								<div id="nameValidation">
+									<div class="alert-danger" th:errors="${userWrapper.firstName}">
+										<ul>
+											<li
+												th:each="err : ${#fields.errors('${userWrapper.firstName}')}"
+												th:text="${err}" />
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-icon">
+								<i class="icon-user"></i> <input type="text"
+									id="register_secondname" onfocusout="checkSecondName();"
+									oninput="resetAndClear('', '', '#sNameValidation')"
+									class="form-control" name="reg_secondName"
+									th:field="*{secondName}" placeholder="Prenume"
+									autofocus="autofocus" data-rule-required="true" />
+								<div class="alert-danger" id="register_secondname_checker"></div>
+								<div id="sNameValidation">
+									<div class="alert-danger" th:errors="${userWrapper.secondName}">
+										<ul>
+											<li
+												th:each="err : ${#fields.errors('${userWrapper.secondName}')}"
+												th:text="${err}" />
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group spacing-top">
+							<label class="checkbox"><input type="checkbox"
+								id="termsAndConditions" onclick="termsAndConditionsChecked()"
+								class="uniform" name="remember" data-rule-required="true"
+								data-msg-required="Vezi termenii si conditiile." /> Accept <a
+								href="javascript:void(0);">termenii si conditiile</a></label> <label
+								for="remember" class="has-error help-block"
+								style="display: none;"></label>
+						</div>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button id="registerButton" type="submit" disabled="true"
+						class="submit btn btn-primary pull-right"
+						style="background-color: #640020;!important">
+						Inregistrare <i class="icon-angle-right"></i>
+					</button>
+				</div>
+			</form>
+			<!-- /Register Formular -->
+		</div>
+	</div>
+	<div class="footer">
+		<a href="/login" class="sign-up"
+			style="color: black;!important">Inapoi la <strong>LOGIN</strong> </a>
+	</div>
+</body>
+</html>

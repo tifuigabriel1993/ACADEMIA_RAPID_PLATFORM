@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/layout"
+	th:with="title='Academia Rapid - Noutati'">
+
+<th:block layout:fragment="newsfeed">
+	<div class="newsfeed-mc col-md-6">
+		<div class="squad-tabs">
+					<a  class="squad-category-button active text-center">Lot</a>
+					<a  class="squad-category-button text-center">Staf</a>
+					<a  class="squad-category-button text-center">Conducere</a>
+				</div>
+				<div class="team-squad">
+					<div class="team-squad-header">
+						<span class="team-squad-title float-left">LOTUL ECHIPEI</span>
+						<span class="team-squad-year float-right">2017/18</span>
+						<div class="clear"></div>
+					</div>
+					<p class="squad-category">PORTARI</p>
+					<div class="squad-row row">
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/3.Iulian_Manea_Portar.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">IULIAN</span>
+									<span class="block">MANEA</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/18.Vlad_Ignat_Portar.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">VLAD</span>
+									<span class="block">IGNAT</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+					</div>
+					<p class="squad-category">FUNDASI</p>
+					<div class="squad-row row">
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/4.Doru_Bratu_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">DORU</span>
+									<span class="block">BRATU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/16.Alexandru_Costache_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ALEXANDRU</span>
+									<span class="block">COSTACHE</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/19.Andrei_Constantin_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ANDREI</span>
+									<span class="block">CONSTANTIN</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/20.Mihai_Stancu_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">MIHAI</span>
+									<span class="block">STANCU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/21.Adrian_Boian_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ADRIAN</span>
+									<span class="block">BOIAN</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/5.Alin_Ladaru_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ALIN</span>
+									<span class="block">LADARU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/22.Florin_Matei_Fundas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">FLORIAN</span>
+									<span class="block">MATEI</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+					</div>
+					<p class="squad-category">MIJLOCASI</p>
+					<div class="squad-row row">
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/8.Alex_olariu_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ALEX</span>
+									<span class="block">OLARIU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/11.Daniel_Burcea_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">DANIEL</span>
+									<span class="block">BURCEA</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/12.Razvan_Zeciu_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">RAZVAN</span>
+									<span class="block">ZECIU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/15.Alexandru_Dumitru_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ALEXANDRU</span>
+									<span class="block">DUMITRU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/23.Marius_Durita_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">MARIUS</span>
+									<span class="block">DURITA</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/24.Alexandru_Burlacu_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ALEXANDRU</span>
+									<span class="block">BURLACU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/13.Adrian_Mitea_Mijlocas.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">ADRIAN</span>
+									<span class="block">MITEA</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+					</div>
+
+					<p class="squad-category">ATACANTI</p>
+					<div class="squad-row row">
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/1.Daniel_Niculae_Atacant.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">DANIEL</span>
+									<span class="block">NICULAE</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/2.Daniel_Pancu_Atacant.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">DANIEL</span>
+									<span class="block">PANCU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/6.Sorin_Stanca_Atacant.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">SORIN</span>
+									<span class="block">STANCA</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/10.Radu_Badita_Atacant.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">RADU</span>
+									<span class="block">BADITA</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/14.Catalin_Barbalau_Atacant.jpg}"/>
+								<div class="squad-player-flip">
+								</div>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">CATALIN</span>
+									<span class="block">BARBALAU</span>
+								</p>
+								<p class="squad-player-appearances">2 APARITII</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+					</div>
+
+					<p class="squad-category">STAFUL ECHIPEI</p>
+					<div class="squad-row row">
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/7.Constantin_Schumacher_Antrenor_principal.jpg}"/>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">CONSTANTIN</span>
+									<span class="block">SCHUMACHER</span>
+								</p>
+								<p class="squad-player-appearances">Antrenor principal</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/9.Mihai_Iosif_Antrenor_Secund.jpg}"/>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">MIHAI</span>
+									<span class="block">IOSIF</span>
+								</p>
+								<p class="squad-player-appearances">Antrenor secund</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/17.Bebe_Cioran_Antrenor_Portari.jpg}"/>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">BEBE</span>
+									<span class="block">CIORAN</span>
+								</p>
+								<p class="squad-player-appearances">Antrenor portari</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/25.Gica_Paun_Maseor.jpg}"/>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">GICA</span>
+									<span class="block">PAUN</span>
+								</p>
+								<p class="squad-player-appearances">Maseor</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/26.Marian_Nitu_Magazioner.jpg}"/>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">MARIAN</span>
+									<span class="block">NITU</span>
+								</p>
+								<p class="squad-player-appearances">Magazioner</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+						<div class="squad-player col-lg-4 col-md-6 col-12 col-sm-12">
+							<div class="squad-player-image">
+								<img class="squad-player-img" th:src="@{../images/players/27.Viorel_Neacsu_Delegat.jpg}"/>
+							</div>
+							<div class="squad-player-info">
+								<p class="squad-player-name">
+									<span class="block">VIOREL</span>
+									<span class="block">NEACSU</span>
+								</p>
+								<p class="squad-player-appearances">Magazioner</p>
+								<p class="squad-player-nationality"><img th:src="@{../images/romania-steag.png}" class="nationality-flag"/> Romania</p>
+							</div>
+						</div>
+					</div>
+				</div>
+	</div>
+	<div class="newsfeed-sidebar-right col-md-3">
+			<div class="nf-standings">
+				<p class="standings__title">Clasament</p>
+				<div class="standings__container">
+					<div class="row standing-table-row legend">
+						<span
+							class="standing-table-row-index col-md-2 col-2 col-sm-2 col-2 col-sm-2">#</span>
+						<span class="col-md-7 col-7 col-sm-7">Echipa</span> <span
+							class="col-md-3 col-3 col-sm-3">Pct</span>
+					</div>
+					<div class="row playoff standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">1</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">CSA Steaua</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">2</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/rapid.png}"
+								class="standings-team-image" /> <span class="">Academia Rapid</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">3</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">AFC Carmen</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">4</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">AS Tricolor</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">9</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">5</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">Comprest GIM</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">7</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">6</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">AFC Asalt</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">7</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">7</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">Progresul Spartac</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">6</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">8</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">A.S. Romprim</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">4</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">9</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">Metaloglobus</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">3</span>
+					</div>
+					<div class="row playout standing-table-row">
+						<span class="standing-table-row-index col-md-2 col-2 col-sm-2">10</span>
+						<div class="standings-team col-md-7 col-7 col-sm-7">
+							<img width="20px" th:src="@{../assets/images/club-logo.png}"
+								class="standings-team-image" /> <span class="">FC Dinamo</span>
+						</div>
+						<span class="col-md-3 col-3 col-sm-3">3</span>
+					</div>
+				</div>
+			</div>
+		</div>
+</th:block>
+</html>

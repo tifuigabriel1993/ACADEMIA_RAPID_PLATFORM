@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/admin-layout"
+	th:with="title='Academia Rapid - Administrare'">
+
+<th:block layout:fragment="content">
+	<script th:src="@{../assets/admin/js/admin-sport.js}" />
+	<div class="row">
+		<div class="col-md-6">
+			<div id="league_found_alert" class="alert alert-danger"
+					style="display: none">Liga existenta.</div>
+			<form>
+				<div class="form-group">
+					<label for="league_name">Nume Liga</label> <input class="form-control"
+						id="league_name" />
+				</div>
+				<div class="form-group">
+					<label for="league_country">Tara</label> 
+					<input class="form-control" id="league_country" value="Romania" disabled="true"/>
+				</div>
+				<button type="button" class="btn btn-success"
+						onclick="createLeague();" style="width: 100%; margin-top: 10px;">Adauga</button>
+			</form>
+		</div>
+		<div class="col-md-6">
+			<ul class="list-group" id="leaguesList">
+			</ul>
+		</div>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			renderLeagues();
+			/*]]>*/
+		</script>
+	</div>
+</th:block>
+</html>

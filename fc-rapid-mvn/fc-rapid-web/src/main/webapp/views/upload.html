@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+<meta name="_csrf_parameterName" th:content="${_csrf.parameterName}" />
+
+</head>
+<body>
+
+	<div th:if="${message}">
+		<h2 th:text="${message}" />
+	</div>
+
+	<div>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<table>
+				<tr>
+					<td>File to upload:</td>
+					<td><input type="file" name="file" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Upload" /></td>
+					<input type="hidden" th:name="${_csrf.parameterName}"
+						th:value="${_csrf.token}" />
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div>
+		<ul>
+			<li th:each="file : ${files}"><a th:href="${file}"
+				th:text="${file}" /></li>
+		</ul>
+		<img src="http://localhost:8080/fc-rapid-web/files/post/1/club-logo-ticket.png"/>
+	</div>
+
+</body>
+</html>

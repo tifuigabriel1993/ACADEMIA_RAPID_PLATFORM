@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/layout"
+	th:with="title='Academia Rapid - Noutati'">
+
+<th:block layout:fragment="newsfeed">
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var USER_LOGGED_IN = IS_USER_LOGGED_IN();
+		var winCached = $(window);
+		var docCached = $(document);
+
+		var next_page = 1;
+		$(document)
+				.scroll(
+						function() {
+							if (next_page > -1) {
+								var element = document.getElementById("posts");
+								var rect = element.getBoundingClientRect();
+								if (winCached.scrollTop() + winCached.height() == docCached
+										.height()) {
+									var next_page_fromws = load_posts(
+											next_page, selectedNewsFeed);
+									next_page = next_page_fromws;
+									var scrollTop = $(window).scrollTop() - 1;
+									var scrollLeft = $(window).scrollLeft();
+									window.scrollTo(scrollLeft, scrollTop);
+								}
+							}
+						});
+		/*]]>*/
+	</script>
+	<div class="newsfeed-mc col-md-6" id="test">
+		<div class="newsfeed-mc-filter-bar row">
+			<div class="mc-filter-bar__comments col-md-2">
+				<div sec:authorize="isAuthenticated()">
+					<a class="post-message"><i
+						class="fa fa-envelope-open-o filter-icon" aria-hidden="true"></i>
+						<i class="fa filter-icon"></i> </a>
+				</div>
+			</div>
+			<div class="mc-filter-bar__buttons col-md-8 text-center">
+				<button id="officialNewsButton" type="button"
+					class="btn btn-default filter-bar__button active"
+					onclick="newsTabsController()">Postarile oficialilor</button>
+				<button id="normalNewsButton" type="button"
+					class="btn btn-default filter-bar__button"
+					onclick="newsTabsController()">Postarile suporterilor</button>
+			</div>
+			<!-- <div class="mc-filter-bar__opt col-md-2 text-right hide-for-small">
+					<a href="#"><i class="fa fa-list-ul filter-icon"
+						aria-hidden="true"></i></a>
+				</div> -->
+		</div>
+
+		<!-- POST MESSAGE -->
+		<div class="post-message-area" id="post-message-container">
+			<div class="post-message-header">
+				<p class="post-message-title">
+					<i class="fa fa-pencil post-title-icon" aria-hidden="true"></i>Posteaza
+				</p>
+				<div class="row">
+					<div class="col-md-6 text-left">
+						<span class="post-title"></span> <input id="post_title"
+							class="post-title-input form-control" type="text"
+							placeholder="Titlul postarii" />
+					</div>
+					<div class="col-md-6 text-right">
+						<div class="dropdown">
+							<button class="btn btn-category dropdown-toggle" type="button"
+								id="dropdownMenuButton" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">Categoria</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#">Meciuri</a> <a
+									class="dropdown-item" href="#">Staff</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="editor"></div>
+			<div style="background-color: #FFF; height: 45px;">
+				<button id="create-post-button"
+					style="margin: 5px; float: right; background-color: #66272F; color: #FFF"
+					onclick="create_post();">Posteaza</button>
+			</div>
+		</div>
+		<!-- END POST MESSAGE -->
+		<div id="posts">
+			<div class="newsfeed-post"></div>
+		</div>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			load_posts(0, selectedNewsFeed);
+			/*]]>*/
+		</script>
+	</div>
+	<div class="newsfeed-sidebar-right col-md-3">
+		<div class="nf-upcoming-event">
+			<h3 class="upcoming-event-title text-center">URMATORUL MECI</h3>
+			<p class="upcoming-event-date text-center">Vin. 22 Septembrie</p>
+			<p class="upcoming-event-stadium text-center">Deplasare</p>
+			<div class="upcoming-event-team row">
+				<div class="col-md-4 text-right text-center-mobile nopadding-left">
+					<img class="upcoming-team-logo"
+						th:src="@{../images/echipe/logos/victoria.png}" />
+				</div>
+				<div class="col-md-4 text-center nopadding">
+					<div class="upcoming-team-hour-placeholder">
+						<div class="upcoming-team-hour">-</div>
+					</div>
+				</div>
+				<div class="col-md-4 text-left text-center-mobile nopadding-right">
+					<img class="upcoming-team-logo"
+						th:src="@{../images/echipe/logos/rapid.png}" />
+				</div>
+			</div>
+			<div class="upcoming-competition-banner text-center">
+				<!-- <img class="upcoming-competition-banner__image" src="images/liga4banner2.png"> -->
+				<p class="upcoming-competition-name">
+					LIGA 4 &nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;
+					ETAPA A 4-A
+				</p>
+			</div>
+			<div class="upcoming-event-info text-center">
+				<a class="upcoming-event-button" th:href="@{/platforma/bilete}">Bilete<i
+					class="fa fa-angle-right" aria-hidden="true"></i></a>
+			</div>
+		</div>
+		<div class="container sponsorsContainer">
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor9.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor4.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../images/sponsori/sponsor1.png}" class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor2.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor3.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor5.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor6.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor7.png}"
+					class="img-fluid" />
+			</div>
+			<div class="sponsor">
+				<img th:src="@{../assets/images/sponsori/sponsor8.png}"
+					class="img-fluid" />
+			</div>
+		</div>
+		<div class="nf-standings">
+			<p class="standings__title">Clasament</p>
+			<div class="standings__container">
+				<div class="row standing-table-row legend">
+					<span
+						class="standing-table-row-index col-md-2 col-2 col-sm-2 col-2 col-sm-2">#</span>
+					<span class="col-md-7 col-7 col-sm-7">Echipa</span> <span
+						class="col-md-3 col-3 col-sm-3">Pct</span>
+				</div>
+				<div class="row playoff standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">1</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">CSA Steaua</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">9</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">2</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/rapid.png}"
+							class="standings-team-image" /> <span class="">Academia
+							Rapid</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">9</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">3</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">AFC Carmen</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">9</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">4</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">AS
+							Tricolor</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">9</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">5</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">Comprest
+							GIM</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">7</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">6</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">AFC Asalt</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">7</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">7</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">Progresul
+							Spartac</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">6</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">8</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">A.S.
+							Romprim</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">4</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">9</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">Metaloglobus</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">3</span>
+				</div>
+				<div class="row playout standing-table-row">
+					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">10</span>
+					<div class="standings-team col-md-7 col-7 col-sm-7">
+						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+							class="standings-team-image" /> <span class="">FC Dinamo</span>
+					</div>
+					<span class="col-md-3 col-3 col-sm-3">3</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

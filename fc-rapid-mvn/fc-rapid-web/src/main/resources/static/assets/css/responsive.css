@@ -1,0 +1,178 @@
+@media screen and (max-width: 767px) {
+	.btn-category {
+    	width: 100%;
+    	margin: 12px 0 6px 0;
+	}
+
+	.post-title-input[type="text"] {
+		width: 100%;
+	}
+
+	.newsfeed {
+		padding-top: 170px;
+	}
+
+	.post-message-area {
+		z-index: 0;
+	}
+	
+	.header-logo, .header-cart-container {
+		text-align: center;
+		width: 100%;
+		padding: 10px 0;
+	}
+
+	.mc-filter-bar__comments {
+		text-align: center;
+	}
+
+	.filter-bar__button {
+		width: 100%;
+		margin: 6px 0;
+	}
+
+	.hide-for-small {
+		display: none;
+	}
+
+	.news-filter-list, .nf-standings {
+		margin: 0;
+	}
+
+	.nf-standings {
+		margin-bottom: 20px;
+		position: relative;
+	}
+
+	.newsfeed-post__content-image {
+		height: 150px
+	}
+
+	.squad-player-image {
+		height: auto;
+	}
+
+	.squad-player {
+		margin-bottom: 20px;
+	}
+
+	.squad-player-flip {
+		top: auto;
+		display: table;
+	}
+
+	.squad-player-flip span {
+		font-size: 24px;
+	}
+
+	.text-center-mobile {
+		text-align: center !important;
+	}
+
+	.upcoming-event-team > div {
+		padding: 0;
+	}
+
+	.upcoming-team-hour {
+		display: block;
+	    width: 116px;
+	    margin: 0 auto;
+	    padding: 4px 0;
+	}
+
+	.ticket-body-title, .ticket-body-content, .ticket-indisponibility-message {
+		margin-bottom: 12px;
+	}
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+	.nf-standings {
+		padding: 0;
+		margin: 0;
+		background-color: #f4f5f7;
+	}
+
+	.squad-category-button {
+		width: auto;
+		padding: 8px 20px;
+	}
+}
+
+@media screen and (max-width: 948px) and (min-width: 768px) {
+	.header-logo {
+		padding: 0;
+	}
+
+	.newsfeed {
+		padding-top: 82px;
+	}
+
+	.newsfeed-mc, .newsfeed-sidebar-right {
+		margin-top: 0;
+	}
+}
+
+@media screen and (max-width: 935px) and (min-width: 768px) {
+	.newsfees-fixed, .nf-standings {
+		top: 100px;
+	}
+
+	.upcoming-event-button {
+	    padding: 6px 0;
+	    width: 92%;
+	    margin: 0 auto;
+	    display: block;
+	}
+
+	.upcoming-team-logo {
+		height: 40px;
+	}
+
+	.upcoming-team-hour-placeholder {
+	    padding: 9px 4px;
+	}
+}
+
+@media screen and (min-width: 1600px) {
+	.wrapper {
+		width: 1600px;
+		margin: 0 auto;
+	}
+}
+@media screen and (max-width: 1116px) and (min-width: 768px) {
+	.ticket-team-image {
+		border: none;
+		width: 100%;
+		height: 60px;
+	}
+
+	.ticket-teams-images__placeholder {
+		display: block;
+	}
+
+	.ticket-body-title, .ticket-body-content, .ticket-indisponibility-message {
+		margin-bottom: 12px;
+	}
+}
+
+@media screen and (max-width: 515px) {
+	.ticket-team-image {
+		border: none;
+		width: 100%;
+		height: 60px;
+	}
+
+	.ticket-teams-images__placeholder {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.squad-category-button {
+		width: 100%;
+	}
+
+	.squad-tabs {
+		padding: 20px;
+	}
+}

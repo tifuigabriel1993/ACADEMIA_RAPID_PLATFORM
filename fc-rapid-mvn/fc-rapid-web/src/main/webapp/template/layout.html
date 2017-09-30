@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:include="../template/fragments/headFragment" />
+<body class="body">
+	<div class="overlay"></div>
+	<div class="header">
+		<th:block layout:replace="../template/fragments/navbarFragment" />
+	</div>
+	<div class="newsfeed">
+		<div class="wrapper row">
+			<div class="newsfeed-sidebar-left col-md-3" style="margin-top: 1.5%;">
+				<div class="newsfees-fixed">
+					<!-- Not Authenticated Section -->
+					<div sec:authorize="isAnonymous()">
+						<div class="newsfeed-account locked">
+							<div class="newsfeed-account__bgcover"></div>
+							<div class="newsfeed-account__profile">
+								<div class="newsfeed-account__profile-details">
+									<img class="newsfeed-account__profile-image"
+										th:src="@{../assets/images/nobody.jpg}" />
+								</div>
+								<div class="newsfeed-account__profile-info">
+									<div class="newsfeed-account__profile-name">Nume</div>
+									<div class="newsfeed-account__profile-roles row">
+										<div class="col">
+											<p class="newsfeed-account__role-name no-margin">
+												<i class="fa fa-user-o role-name-icon" aria-hidden="true"></i>Rol
+											</p>
+											<p class="newsfeed-account__role-value">?</p>
+										</div>
+										<div class="col">
+											<p class="newsfeed-account__role-name no-margin">
+												<i class="fa fa-star role-name-icon" aria-hidden="true"></i>Rating
+											</p>
+											<p class="newsfeed-account__role-value">?</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="account-locked">
+								<p class="account-locked-message text-center">Inregistreaza-te
+									pentru a deveni membru.</p>
+							</div>
+						</div>
+					</div>
+					<!-- !Not Authenticated Section -->
+					<!-- Authenticated Section -->
+					<div sec:authorize="isAuthenticated()">
+						<div class="newsfeed-account">
+							<div class="newsfeed-account__bgcover"></div>
+							<div class="newsfeed-account__profile">
+								<div class="newsfeed-account__profile-details">
+									<div id="photoProfile" style="display: none"
+										sec:authentication="principal.userDto.profilePhotoUrl" />
+									<img class="newsfeed-account__profile-image" id="profileUrlImg"
+										th:src="@{../assets/images/nobody.jpg}" />
+									<script th:inline="javascript">
+										/*<![CDATA[*/
+										var photo_url = $("#photoProfile")
+												.text();
+										if(photo_url != 'NO_PHOTO') {
+											$("#profileUrlImg").attr("src",
+													photo_url);
+										}
+										/*]]>*/
+									</script>
+								</div>
+								<div class="newsfeed-account__profile-info">
+									<div class="newsfeed-account__profile-name">
+										<span sec:authentication="principal.userDto.secondName"></span>
+										<span sec:authentication="principal.userDto.firstName"></span>
+									</div>
+									<div class="newsfeed-account__profile-roles row">
+										<div class="col">
+											<p class="newsfeed-account__role-name no-margin">
+												<i class="fa fa-user-o role-name-icon" aria-hidden="true"></i>Rol
+											</p>
+											<p class="newsfeed-account__role-value">Suporter</p>
+										</div>
+										<div class="col">
+											<p class="newsfeed-account__role-name no-margin">
+												<i class="fa fa-star role-name-icon" aria-hidden="true"></i>Rating
+											</p>
+											<p class="newsfeed-account__role-value" style="">0</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- !Authenticated Section -->
+					<div class="newsfeed-nav">
+						<ul class="newsfeed-nav__vertical">
+							<li class="newsfeed-nav__item active"><a
+								th:href="@{/platforma/noutati}"><i
+									class="fa fa-newspaper-o nav-icon" aria-hidden="true"></i>Noutati</a><span
+								class="newsfeed-nav__item-description">Ultimile noutati</span></li>
+							<li class="newsfeed-nav__item"><a
+								th:href="@{/platforma/club}"><i
+									class="fa fa-bandcamp nav-icon" aria-hidden="true"></i>Club</a><span
+								class="newsfeed-nav__item-description">Informatii
+									generale</span></li>
+							<li class="newsfeed-nav__item"><a
+								th:href="@{/platforma/bilete}"><i
+									class="fa fa-money nav-icon" aria-hidden="true"></i>Bilete</a><span
+								class="newsfeed-nav__item-description">Cumpara bilete</span></li>
+							<li class="newsfeed-nav__item"><a
+								th:href="@{/platforma/lot}"><i class="fa fa-male nav-icon"
+									aria-hidden="true"></i>Lot</a><span
+								class="newsfeed-nav__item-description">Prezentare echipa</span></li>
+							<li class="newsfeed-nav__item"><a href="#"
+								data-toggle="popover" title="Atentie!"
+								data-content="Aceasta functionalitate va fi disponibila in curand!"><i
+									class="fa fa-shopping-bag nav-icon" aria-hidden="true"></i>Magazin</a><span
+								class="newsfeed-nav__item-description">Articole sportive</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<th:block layout:fragment="newsfeed" />
+		</div>
+	</div>
+	
+</body>
+<script>
+	$(document).ready(function() {
+		$("#profile-popover").click(function() {
+			$("#user-menu").slideToggle("fast", function() {
+			});
+		});
+	});
+	initSample();
+</script>
+<script th:src="@{../assets/js/bootstrap.min.js}"></script>
+<script th:src="@{../assets/js/post-message.js}"></script>
+</html>
