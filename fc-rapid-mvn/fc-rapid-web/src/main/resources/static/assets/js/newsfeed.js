@@ -14,7 +14,7 @@ var see_comments = "see_comments_post_";
 
 var textareaid = "text_area";
 var selectedNewsFeed = "OFFICIAL";
-var selectedCategory = [];
+var selectedCategory = [ "GENERAL" ];
 var selectedCategoriesToGet = [ "GENERAL" ];
 
 function selectPostCategoryController(category) {
@@ -37,6 +37,7 @@ function IS_USER_LOGGED_IN() {
 		},
 		success : function(data, textStatus, xhr) {
 			status = 1;
+			localStorage.setItem("userRole", data)
 		},
 		error : function(data, textStatus, xhr) {
 			status = 0;
@@ -72,19 +73,22 @@ function create_post() {
 		},
 		success : function(data, textStatus, xhr) {
 			status = xhr.status;
+			if (localStorage.getItem("userRole") == "USER") {
+				selectedNewsFeed = "NORMAL";
+				newsTabsController('officialNewsButton', 'normalNewsButton',
+						'NORMAL')
+			} else {
+				selectedNewsFeed = "OFFICIAL";
+				newsTabsController('normalNewsButton', 'officialNewsButton',
+						'OFFICIAL')
+			}
+
+			clearAndLoadPosts();
 		},
 		error : function(data, textStatus, xhr) {
 			status = xhr.status;
 		}
 	});
-
-	if (localStorage.getItem("userRole") == "USER") {
-		selectedNewsFeed = "NORMAL";
-	} else {
-		selectedNewsFeed = "OFFICIAL";
-	}
-
-	clearAndLoadPosts();
 }
 
 function load_posts(page_number, type) {
@@ -122,7 +126,7 @@ function get_posts_page_request(POST_URI, page_number, type) {
 	var posts;
 
 	var PAGE_URI = POST_URI + "/" + type + "/" + selectedCategoriesToGet
-	+ PAGE_URI_PATTERN + page_number;
+			+ PAGE_URI_PATTERN + page_number;
 	$.ajax({
 		type : "GET",
 		contentType : "application/json",
@@ -168,51 +172,39 @@ function appendCommentsContainer(post_id) {
 			+ post_id
 			+ ')">'
 			+ '<i class="fa fa-comments-o icon-social-thumb" aria-hidden="true"></i><p style="display: inline;" id="'
-			+ see_comments_id
-			+ '">Vezi comentariile</p></span></a>'
-			+ '<div style="display:none" id="'
-			+ comments_list_wrapper_id
-			+ '"> <div class="actionBox">'
-			+ '<ul class="commentList" id="'
-			+ commentsListId
-			+ '">'
-			+ '</ul>'
-			+ '</div>'
-			+ '<div class="row">'
+			+ see_comments_id + '">Vezi comentariile</p></span></a>'
+			+ '<div style="display:none" id="' + comments_list_wrapper_id
+			+ '"> <div class="actionBox">' + '<ul class="commentList" id="'
+			+ commentsListId + '">' + '</ul>' + '</div>' + '<div class="row">'
 			+ '<div class="status-upload">';
-			
-		if(USER_LOGGED_IN == 1) {
-			comment += '<div sec:authorize="isAuthenticated()"><form>'
-			+ '<textarea placeholder="Comenteaza..." id="'
-			+ textarea_local_id
-			+ '"></textarea>'
-			+ '<button class="btn btn" type="button" onclick="sendComment('
-			+ post_id
-			+ ')">'
-			+ '<i class="fa fa-share">Trimite</i>'
-			+ '</button>'
-			+ '</form></div>';
-		} else if(USER_LOGGED_IN == 0) {
-			comment+='<p style="display: block;text-align: center;color: #561018;">Logheaza-te pentru a lasa comentarii</p>';
-		}
-		comment +='</div></div></div></div>';
+
+	if (USER_LOGGED_IN == 1) {
+		comment += '<div sec:authorize="isAuthenticated()"><form>'
+				+ '<textarea placeholder="Comenteaza..." id="'
+				+ textarea_local_id + '"></textarea>'
+				+ '<button class="btn btn" type="button" onclick="sendComment('
+				+ post_id + ')">' + '<i class="fa fa-share">Trimite</i>'
+				+ '</button>' + '</form></div>';
+	} else if (USER_LOGGED_IN == 0) {
+		comment += '<p style="display: block;text-align: center;color: #561018;">Logheaza-te pentru a lasa comentarii</p>';
+	}
+	comment += '</div></div></div></div>';
 	return comment;
 }
 
 function createComment(comment) {
 	var photoUrl = '/assets/images/nobody.jpg';
-	if(comment.userPhotoUrl != "NO_PHOTO") {
+	if (comment.userPhotoUrl != "NO_PHOTO") {
 		photoUrl = comment.userPhotoUrl;
 	}
 
-	var usernameLink = '<a style="color:#561018;font-weight: bold;" href="/profil/' + comment.username + '">'+comment.username+'</a>';
-	var comment = '<li>'
-			+ '<div class="commenterImage">'
-			+ '<img src="'+ photoUrl + '" class="notres"/>'
-			+ '</div>' + '<div class="commentText">' + '<p class="">' + comment.text
+	var usernameLink = '<a style="color:#561018;font-weight: bold;" href="/profil/'
+			+ comment.username + '">' + comment.username + '</a>';
+	var comment = '<li>' + '<div class="commenterImage">' + '<img src="'
+			+ photoUrl + '" class="notres"/>' + '</div>'
+			+ '<div class="commentText">' + '<p class="">' + comment.text
 			+ '</p>' + '<span class="date sub-text">' + 'Postat de '
-			+ usernameLink
-			+ '</span>' + '</div>' + '</li>';
+			+ usernameLink + '</span>' + '</div>' + '</li>';
 	return comment;
 }
 
@@ -239,7 +231,7 @@ function newsTabsController(oldId, newId, selected) {
 	clearAndLoadPosts();
 }
 
-function clearAndLoadPosts (){
+function clearAndLoadPosts() {
 	document.getElementById("posts").innerHTML = "";
 	next_page = 1;
 	load_posts(0, selectedNewsFeed);

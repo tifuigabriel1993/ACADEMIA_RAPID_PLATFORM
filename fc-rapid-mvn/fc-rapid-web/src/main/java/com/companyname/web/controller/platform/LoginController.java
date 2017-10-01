@@ -28,12 +28,13 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/loggedIn", method = RequestMethod.GET)
-	public ResponseEntity<?> loggedIn() {
+	public ResponseEntity<String> loggedIn() {
 		String authenticatedUsername = SecurityUtil.getAuthenticatedUsername();
 		if (authenticatedUsername == null) {
-			return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+			return new ResponseEntity<String>(HttpStatus.PRECONDITION_FAILED);
 		}
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		String userRole = SecurityUtil.getAuthenticatedUserRole();
+		return new ResponseEntity<String>(userRole, HttpStatus.ACCEPTED);
 	}
 
 }
