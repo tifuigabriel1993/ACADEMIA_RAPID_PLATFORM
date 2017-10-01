@@ -35,6 +35,7 @@ public class UserTransformer {
 		userDto.setPassword(user.getPassword());
 		userDto.setSocialUser(user.isSocialUser());
 		userDto.setFacebookId(user.getFacebookId());
+		userDto.setRole(user.getRole().getName());
 		return userDto;
 	}
 

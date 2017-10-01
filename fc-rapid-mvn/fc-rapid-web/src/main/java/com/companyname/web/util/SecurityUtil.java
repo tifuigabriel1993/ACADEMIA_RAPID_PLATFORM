@@ -26,4 +26,16 @@ public class SecurityUtil {
 		}
 		return null;
 	}
+	
+	public static String getAuthenticatedUserRole() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (principal instanceof UserDetailsDTO) {
+			UserDetailsDTO userDetails = (UserDetailsDTO) principal;
+			return userDetails.getUserDto().getRole();
+		} else if (principal instanceof FacebookuserDetailsDTO) {
+			FacebookuserDetailsDTO facebookUserDetails = (FacebookuserDetailsDTO) principal;
+			return facebookUserDetails.getUserDto().getRole();
+		}
+		return null;
+	}
 }

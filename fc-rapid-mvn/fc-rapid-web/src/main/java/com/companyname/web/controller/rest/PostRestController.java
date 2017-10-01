@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.companyname.service.business.social.PostService;
 import com.companyname.service.dto.platform.PostDTO;
 import com.companyname.web.mapper.social.PostMapper;
+import com.companyname.web.model.platform.JsonMessage;
 import com.companyname.web.model.social.PostModel;
 import com.companyname.web.model.social.PostsWrapper;
 import com.companyname.web.util.SecurityUtil;
@@ -54,17 +55,17 @@ public class PostRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> createPost(@RequestBody @Valid PostModel postModel, BindingResult result) {
+	public ResponseEntity<JsonMessage> createPost(@RequestBody @Valid PostModel postModel, BindingResult result) {
 		
 		if (result.hasErrors()){
-			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<JsonMessage>(new JsonMessage("Invalid format !"), HttpStatus.NOT_ACCEPTABLE);
 		}
 		
 		PostDTO postDto = postMapper.mapDto(postModel);
 		postDto.setCreationDate(new Date());
 		postDto.setUsername(SecurityUtil.getAuthenticatedUsername());
 		postService.createPost(postDto);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<JsonMessage>(new JsonMessage("Post created !"), HttpStatus.OK);
 	}
 	
 	private int findNextPage(List<PostModel> postsModelList, int current_page) {

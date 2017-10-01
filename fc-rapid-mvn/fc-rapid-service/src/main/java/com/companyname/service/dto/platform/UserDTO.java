@@ -32,6 +32,20 @@ public class UserDTO implements Serializable {
 	private String profilePhotoUrl;
 
 	private boolean socialUser;
+	
+	protected String role;
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Integer getUserId() {
 		return userId;
