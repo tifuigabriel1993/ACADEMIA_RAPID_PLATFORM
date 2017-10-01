@@ -35,6 +35,35 @@
 			</div>
 		</div>
 	</div>
+	<div class="mobile-nav">
+                <input id="burger" type="checkbox" />
+                <label for="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <nav>
+                    <ul>
+                        <li class=""><a href="index.html" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><i class="fa fa fa-user nav-icon-mobile" aria-hidden="true"></i>Contul meu</a></li>
+                        <li class=""><a href="index.html" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><i class="fa fa-newspaper-o nav-icon-mobile" aria-hidden="true"></i>Noutati</a></li>
+                        <li class=""><a href="club.html"><i class="fa fa-bandcamp nav-icon-mobile" aria-hidden="true"></i>Club</a></li>
+                        <li class=""><a href="bilete.html"><i class="fa fa-money nav-icon-mobile" aria-hidden="true"></i>Bilete</a></li>
+                        <li class=""><a href="#" data-toggle="popover" title="Atentie!" data-content="Aceasta functionalitate va fi disponibila in curand!"><i class="fa fa-bullhorn nav-icon-mobile" aria-hidden="true"></i>Evenimente</a></li>
+                        <li class=""><a href="#" data-toggle="popover" title="Atentie!" data-content="Aceasta functionalitate va fi disponibila in curand!"><i class="fa fa-shopping-bag nav-icon-mobile" aria-hidden="true"></i>Magazin</a></li>
+                        <li class=""><a href="lot.html"><i class="fa fa-users nav-icon-mobile" aria-hidden="true" style="padding-right: 2%"></i>   Echipă</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <a class="filter-posts hide-for-large" href="#filter-post-bar" data-toggle="collapse"><i class="fa fa-filter" aria-hidden="true"></i></a>
+			<div id="filter-post-bar" class="collapse">
+				<div class="text-center">
+					<span><a>Evenimente</a> </span>
+					<span>| <a>Transferuri</a></span>
+					<span>| <a>Staff</a></span>
+					<span>| <a>Meciuri</a></span>
+					<span>| <a>Altele</a></span>
+				</div>
+			</div>
 	<form id="logout" th:action="@{logout}" name="logout" method="POST">
 		<input type="hidden" th:name="${_csrf.parameterName}"
 			th:value="${_csrf.token}" />

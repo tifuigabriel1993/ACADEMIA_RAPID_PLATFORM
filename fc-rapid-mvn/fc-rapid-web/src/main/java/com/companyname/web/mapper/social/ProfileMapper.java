@@ -47,6 +47,8 @@ public class ProfileMapper {
 		profileModel.setNickName(profileDto.getNickName());
 		profileModel.setSex(profileDto.getSex());
 		profileModel.setPhotoUrl(profileDto.getUrlPhoto());
+		profileModel.setPostsNumber(profileDto.getUserPostsNumber());
+		profileModel.setCommentsNumber(profileDto.getUserCommentsNumber());
 		if (profileDto.getBirthDay() != null) {
 			profileModel.setBirthDay(profileDto.getBirthDay().toString());
 		}

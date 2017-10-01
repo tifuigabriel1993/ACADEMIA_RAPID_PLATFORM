@@ -30,4 +30,7 @@ public interface PostRepository extends JpaRepository<Post, Long>, PagingAndSort
 			@Param(value = "categories") Set<String> categories,
 			Pageable request);
 
+	@Query("SELECT count(p) FROM Post p INNER JOIN p.author a WHERE a.username =:username")
+	int findUserPostsNumber(@Param("username") String username);
+
 }

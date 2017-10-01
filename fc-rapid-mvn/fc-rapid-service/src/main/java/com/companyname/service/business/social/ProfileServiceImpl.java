@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.companyname.integration.repository.platform.UserRepository;
 import com.companyname.integration.repository.social.AddressRepository;
+import com.companyname.integration.repository.social.CommentRepository;
+import com.companyname.integration.repository.social.PostRepository;
 import com.companyname.persitence.entity.platform.User;
 import com.companyname.persitence.entity.social.Address;
 import com.companyname.persitence.entity.social.Profile;
@@ -34,7 +36,13 @@ public class ProfileServiceImpl implements ProfileService {
 	private PostService postService;
 
 	@Autowired
+	private PostRepository postRepository;
+
+	@Autowired
 	private CommentService commentService;
+
+	@Autowired
+	private CommentRepository commentRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -63,6 +71,8 @@ public class ProfileServiceImpl implements ProfileService {
 		ProfileDTO profileDto = profileTransformer.toDto(userWithProfile);
 		profileDto.setUrlPhoto(SocialUtil.buildFacebookPhotoUrl(userWithProfile.getFacebookId()));
 		profileDto.setActivities(findUserActivities(userWithProfile));
+		profileDto.setUserCommentsNumber(commentRepository.findUserCommentsNumber(username));
+		profileDto.setUserPostsNumber(postRepository.findUserPostsNumber(username));
 
 		return profileDto;
 	}

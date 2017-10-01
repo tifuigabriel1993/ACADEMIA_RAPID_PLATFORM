@@ -14,11 +14,12 @@
 						<strong style="font-weight: bold;">Rol: </strong> Suporter
 					</p>
 					<p>
-						<strong style="font-weight: bold;">Comentarii: </strong> 0
+						<strong style="font-weight: bold;">Comentarii: </strong>
+						<span th:text="${profile.commentsNumber}"/>
 					</p>
 					<p>
 						<strong style="font-weight: bold;">Activitate: </strong> <span
-							class="tags">scazuta</span>
+							class="tags text-warning">scazuta</span>
 					</p>
 					<p style="margin-top: 50px">
 						<strong style="font-weight: bold;">Descriere: </strong> <span
@@ -30,24 +31,24 @@
 						<div id="photoProfile" style="display: none"
 							th:text="${profile.photoUrl}" />
 						<div class="my-account-image-image2">
-							<img id='img-upload' th:src="@{~/assets/images/nobody.jpg}"
+							<img id='img-upload' th:src="@{../assets/images/nobody.jpg}"
 								style="height: 140px;" />
 						</div>
 						<script th:inline="javascript">
 							/*<![CDATA[*/
 							var photo_url = $("#photoProfile").text();
 							if(photo_url != 'NO_PHOTO') {
-								$("#img-upload").attr("src", photo_url);
+								$("#img-upload").attr("src", photo_url+'?width=9999');
 							}
 							/*]]>*/
 						</script>
 						<figcaption class="ratings">
 							<p>
-								<a href="#"> <span class="fa fa-star"></span>
-								</a> <a href="#"> <span class="fa fa-star"></span>
-								</a> <a href="#"> <span class="fa fa-star"></span>
-								</a> <a href="#"> <span class="fa fa-star"></span>
-								</a> <a href="#"> <span class="fa fa-star-o"></span>
+								<a style="color:#561018" href="#"> <span class="fa fa-star"></span>
+								</a> <a style="color:#561018"  href="#"> <span class="fa fa-star-o"></span>
+								</a> <a style="color:#561018"  href="#"> <span class="fa fa-star-o"></span>
+								</a> <a style="color:#561018"  href="#"> <span class="fa fa-star-o"></span>
+								</a> <a style="color:#561018"  href="#"> <span class="fa fa-star-o"></span>
 								</a>
 							</p>
 						</figcaption>
@@ -71,7 +72,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 emphasis">
 					<h2>
-						<strong>0</strong>
+						<strong th:text="${profile.postsNumber}">0</strong>
 					</h2>
 					<p>
 						<small>Postari</small>

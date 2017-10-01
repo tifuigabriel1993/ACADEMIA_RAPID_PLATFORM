@@ -29,6 +29,10 @@ public class ProfileModel {
 
 	private Set<ActivityModel> activities;
 
+	private int postsNumber;
+
+	private int commentsNumber;
+
 	public String getUsername() {
 		return username;
 	}
@@ -115,6 +119,22 @@ public class ProfileModel {
 
 	public void setActivities(Set<ActivityModel> activities) {
 		this.activities = activities;
+	}
+
+	public int getPostsNumber() {
+		return postsNumber;
+	}
+
+	public void setPostsNumber(int postsNumber) {
+		this.postsNumber = postsNumber;
+	}
+
+	public int getCommentsNumber() {
+		return commentsNumber;
+	}
+
+	public void setCommentsNumber(int commentsNumber) {
+		this.commentsNumber = commentsNumber;
 	}
 
 	@Override

@@ -29,6 +29,10 @@ public class ProfileDTO implements Serializable {
 
 	private Set<SimpleActivityDTO> activities;
 
+	private int userCommentsNumber;
+
+	private int userPostsNumber;
+
 	public Long getProfileId() {
 		return profileId;
 	}
@@ -99,6 +103,22 @@ public class ProfileDTO implements Serializable {
 
 	public void setActivities(Set<SimpleActivityDTO> activities) {
 		this.activities = activities;
+	}
+
+	public int getUserCommentsNumber() {
+		return userCommentsNumber;
+	}
+
+	public void setUserCommentsNumber(int userCommentsNumber) {
+		this.userCommentsNumber = userCommentsNumber;
+	}
+
+	public int getUserPostsNumber() {
+		return userPostsNumber;
+	}
+
+	public void setUserPostsNumber(int userPostsNumber) {
+		this.userPostsNumber = userPostsNumber;
 	}
 
 	@Override
