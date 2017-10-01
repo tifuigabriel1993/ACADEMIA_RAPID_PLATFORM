@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="../template/layout"
+	th:with="title='Academia Rapid - Noutati'">
+<th:block layout:fragment="newsfeed">
+	<div class="newsfeed-mc col-md-6" id="postView">
+
+		<div class="newsfeed-post">
+			<div class="newsfeed-post__content">
+				<div class="newsfeed-post__content-title">
+					<span th:text="*{post.title}"></span>
+					<div class="newsfeed-post-social-icons" style="line-height: 18px"
+						th:text="*{post.creationDate}"></div>
+					<p class="newsfeed-post-event">ARTICOL</p>
+				</div>
+				<div class="newsfeed-post__content-text"></div>
+			</div>
+			<div id="comments">
+			</div>
+		</div>
+	</div>
+	
+	<div id = "postId" th:text = "*{post.postId}"></div>
+	
+	<script th:inline="javascript">
+			/*<![CDATA[*/
+			var USER_LOGGED_IN = IS_USER_LOGGED_IN();
+			document.getElementById('comments').innerHTML = appendCommentsContainer(document.getElementById('postId').innerHTML);
+			/*]]>*/
+		</script>
+</th:block>
+</html>

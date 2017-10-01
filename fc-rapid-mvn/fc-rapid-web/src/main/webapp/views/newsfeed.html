@@ -44,10 +44,10 @@
 			<div class="mc-filter-bar__buttons col-md-8 text-center">
 				<button id="officialNewsButton" type="button"
 					class="btn btn-default filter-bar__button active"
-					onclick="newsTabsController()">Postarile oficialilor</button>
+					onclick="newsTabsController('normalNewsButton', 'officialNewsButton', 'OFFICIAL')">Comunicate oficiale</button>
 				<button id="normalNewsButton" type="button"
 					class="btn btn-default filter-bar__button"
-					onclick="newsTabsController()">Postarile suporterilor</button>
+					onclick="newsTabsController('officialNewsButton', 'normalNewsButton', 'NORMAL')">Toate noutatile</button>
 			</div>
 			<!-- <div class="mc-filter-bar__opt col-md-2 text-right hide-for-small">
 					<a href="#"><i class="fa fa-list-ul filter-icon"
@@ -72,10 +72,10 @@
 							<button class="btn btn-category dropdown-toggle" type="button"
 								id="dropdownMenuButton" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">Categoria</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="#">Meciuri</a> <a
-									class="dropdown-item" href="#">Staff</a>
-							</div>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<li> <a class="dropdown-item" onclick="selectPostCategoryController('Meciuri')">Meciuri</a> </li>
+								<li> <a class="dropdown-item" onclick="selectPostCategoryController('Staff')">Staff</a> </li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -131,38 +131,38 @@
 		</div>
 		<div class="container sponsorsContainer">
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor9.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor9.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor4.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor4.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../images/sponsori/sponsor1.png}" class="img-fluid" />
+				<img th:src="@{~/images/sponsori/sponsor1.png}" class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor2.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor2.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor3.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor3.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor5.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor5.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor6.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor6.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor7.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor7.png}"
 					class="img-fluid" />
 			</div>
 			<div class="sponsor">
-				<img th:src="@{../assets/images/sponsori/sponsor8.png}"
+				<img th:src="@{~/assets/images/sponsori/sponsor8.png}"
 					class="img-fluid" />
 			</div>
 		</div>
@@ -178,7 +178,7 @@
 				<div class="row playoff standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">1</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">CSA Steaua</span>
 					</div>
 					<span class="col-md-3 col-3 col-sm-3">9</span>
@@ -186,7 +186,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">2</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/rapid.png}"
+						<img width="20px" th:src="@{~/assets/images/rapid.png}"
 							class="standings-team-image" /> <span class="">Academia
 							Rapid</span>
 					</div>
@@ -195,7 +195,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">3</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">AFC Carmen</span>
 					</div>
 					<span class="col-md-3 col-3 col-sm-3">9</span>
@@ -203,7 +203,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">4</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">AS
 							Tricolor</span>
 					</div>
@@ -212,7 +212,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">5</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">Comprest
 							GIM</span>
 					</div>
@@ -221,7 +221,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">6</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">AFC Asalt</span>
 					</div>
 					<span class="col-md-3 col-3 col-sm-3">7</span>
@@ -229,7 +229,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">7</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">Progresul
 							Spartac</span>
 					</div>
@@ -238,7 +238,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">8</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">A.S.
 							Romprim</span>
 					</div>
@@ -247,7 +247,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">9</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">Metaloglobus</span>
 					</div>
 					<span class="col-md-3 col-3 col-sm-3">3</span>
@@ -255,7 +255,7 @@
 				<div class="row playout standing-table-row">
 					<span class="standing-table-row-index col-md-2 col-2 col-sm-2">10</span>
 					<div class="standings-team col-md-7 col-7 col-sm-7">
-						<img width="20px" th:src="@{../assets/images/club-logo.png}"
+						<img width="20px" th:src="@{~/assets/images/club-logo.png}"
 							class="standings-team-image" /> <span class="">FC Dinamo</span>
 					</div>
 					<span class="col-md-3 col-3 col-sm-3">3</span>

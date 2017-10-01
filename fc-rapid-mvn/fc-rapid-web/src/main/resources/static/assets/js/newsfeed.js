@@ -14,6 +14,15 @@ var see_comments = "see_comments_post_";
 
 var textareaid = "text_area";
 var selectedNewsFeed = "OFFICIAL";
+var selectedCategory = [];
+var selectedCategoriesToGet = [ "GENERAL" ];
+
+function selectPostCategoryController(category) {
+	selectedCategory.push(category.toUpperCase());
+
+	$("#dropdownMenuButton").closest('.dropdown').find('.dropdown-toggle')
+			.html(category);
+}
 
 function IS_USER_LOGGED_IN() {
 	var status;
@@ -48,7 +57,8 @@ function isPageLoaded(array, page) {
 function create_post() {
 	var post = {}
 	post["title"] = $("#post_title").val();
-	post["content"] = CKEDITOR.instances['editor'].getData()
+	post["content"] = CKEDITOR.instances['editor'].getData();
+	post["categories"] = selectedCategory;
 	$.ajax({
 		type : "POST",
 		contentType : "application/json",
@@ -67,7 +77,14 @@ function create_post() {
 			status = xhr.status;
 		}
 	});
-	location.reload();
+
+	if (localStorage.getItem("userRole") == "USER") {
+		selectedNewsFeed = "NORMAL";
+	} else {
+		selectedNewsFeed = "OFFICIAL";
+	}
+
+	clearAndLoadPosts();
 }
 
 function load_posts(page_number, type) {
@@ -104,7 +121,8 @@ function load_posts(page_number, type) {
 function get_posts_page_request(POST_URI, page_number, type) {
 	var posts;
 
-	var PAGE_URI = POST_URI + "/" + type + PAGE_URI_PATTERN + page_number;
+	var PAGE_URI = POST_URI + "/" + type + "/" + selectedCategoriesToGet
+	+ PAGE_URI_PATTERN + page_number;
 	$.ajax({
 		type : "GET",
 		contentType : "application/json",
@@ -210,22 +228,14 @@ function displayComments(postid) {
 	}
 }
 
-function newsTabsController() {
-	
-	var officalNewsId = document.getElementById("officialNewsButton");
-	var normalNewsId = document.getElementById("normalNewsButton");
+function newsTabsController(oldId, newId, selected) {
 
-	if (officalNewsId.classList.contains('active')) {
-		officalNewsId.classList.remove('active');
-		normalNewsId.classList.add('active');
-		selectedNewsFeed = "NORMAL";
-		clearAndLoadPosts();
-		return;
-	}
+	var oldNewsFeed = document.getElementById(oldId);
+	var newNewsFeed = document.getElementById(newId);
 
-	officalNewsId.classList.add('active');
-	normalNewsId.classList.remove('active');
-	selectedNewsFeed = "OFFICIAL";
+	oldNewsFeed.classList.remove('active');
+	newNewsFeed.classList.add('active');
+	selectedNewsFeed = selected;
 	clearAndLoadPosts();
 }
 
@@ -235,3 +245,6 @@ function clearAndLoadPosts (){
 	load_posts(0, selectedNewsFeed);
 }
 
+function redirectToPost(id) {
+	window.location = "postare/" + id;
+}

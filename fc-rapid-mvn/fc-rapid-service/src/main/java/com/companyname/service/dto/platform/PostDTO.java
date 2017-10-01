@@ -3,6 +3,7 @@ package com.companyname.service.dto.platform;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.companyname.service.dto.social.CommentDTO;
 import com.companyname.service.util.enums.PostTypeEnum;
@@ -23,6 +24,20 @@ public class PostDTO implements Serializable {
 
 	private List<CommentDTO> comments;
 	
+	private Set<String> categories;
+	
+	public Set<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<String> categories) {
+		this.categories = categories;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	private PostTypeEnum type;
 
 	public Long getPostId() {

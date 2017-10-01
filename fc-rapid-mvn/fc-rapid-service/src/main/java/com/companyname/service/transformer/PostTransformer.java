@@ -15,6 +15,9 @@ public class PostTransformer {
 
 	@Autowired
 	private CommentTransformer commentTransformer;
+	
+	@Autowired
+	private CategoryTransformer categoryTransformer;
 
 	public Post toEntity(PostDTO postDto) {
 		Post post = new Post();
@@ -35,7 +38,7 @@ public class PostTransformer {
 			postDto.setComments(commentTransformer.toDtoList(post.getComments(), false));
 		}
 		postDto.setType(PostTypeEnum.valueOf(post.getType()));
-
+		postDto.setCategories(categoryTransformer.toStrings(post.getCategories()));
 		return postDto;
 	}
 

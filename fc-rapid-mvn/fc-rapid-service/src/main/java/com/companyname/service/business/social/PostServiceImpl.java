@@ -1,6 +1,7 @@
 package com.companyname.service.business.social;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,11 +35,22 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<PostDTO> getPostsPage(int current_page, String type) {
-		PageRequest pageRequest = new PageRequest(current_page, PAGE_SIZE, Direction.DESC, "postDate");
-		Page<Post> postsPage = postRepository.findPostsByType(type, pageRequest);
-		return postTransformer.toDtoList(postsPage.getContent(), true);
+		PageRequest pageRequest = new PageRequest(current_page, PAGE_SIZE,
+				Direction.DESC, "postDate");
+		Page<Post> findPostsPage = postRepository.findPostsByType(type,
+				pageRequest);
+		return postTransformer.toDtoList(findPostsPage.getContent(), true);
 	}
-
+	
+	@Override
+	public List<PostDTO> getPostsPage(int current_page, String type, Set<String> categories) {
+		PageRequest pageRequest = new PageRequest(current_page, PAGE_SIZE,
+				Direction.DESC, "postDate");
+		Page<Post> findPostsPage = postRepository.findPostsByTypeAndCategory(type,
+				categories, pageRequest);
+		return postTransformer.toDtoList(findPostsPage.getContent(), true);
+	}
+	
 	@Override
 	public List<PostDTO> getUserLastPosts(String username, int page_size) {
 		PageRequest pageRequest = new PageRequest(USER_POSTS_FIRST_PAGE, page_size, Direction.DESC, "postDate");
@@ -53,6 +65,11 @@ public class PostServiceImpl implements PostService {
 		post.setAuthor(user);
 		post.setType(getPostTypeByUserRole(user.getRole()));
 		postRepository.save(post);
+	}
+	
+	@Override
+	public PostDTO getPostById(long id) {
+		return postTransformer.toDto(postRepository.getOne(id), true);
 	}
 
 	private String getPostTypeByUserRole(Role role) {

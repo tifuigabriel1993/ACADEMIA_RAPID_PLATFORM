@@ -1,18 +1,27 @@
 package com.companyname.web.model.social;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class PostModel {
 
 	private Long postId;
 
+	@NotNull
+	@Size(min = 3, max = 60)
 	private String title;
 
+	@NotNull
 	private String content;
 
 	private String username;
 
 	private String creationDate;
+	
+	private Set<String> categories;
 
 	private List<CommentModel> comments;
 
@@ -66,8 +75,16 @@ public class PostModel {
 
 	@Override
 	public String toString() {
-		return "PostModel [postId=" + postId + ", title=" + title + ", content=" + content + ", username=" + username
-				+ ", creationDate=" + creationDate + ", comments=" + comments + "]";
+		return "PostModel [title=" + title + ", content=" + content + ", username=" + username + ", creationDate="
+				+ creationDate + "]";
+	}
+
+	public Set<String> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<String> categories) {
+		this.categories = categories;
 	}
 
 }

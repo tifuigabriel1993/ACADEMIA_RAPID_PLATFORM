@@ -29,4 +29,6 @@ public class Views {
 	public static final String ADMIN_ROUNDS_VIEW = "admin/rounds";
 
 	public static final String ADMIN_MATCHES_VIEW = "admin/matches";
+	
+	public static final String POST_VIEW = "post";
 }

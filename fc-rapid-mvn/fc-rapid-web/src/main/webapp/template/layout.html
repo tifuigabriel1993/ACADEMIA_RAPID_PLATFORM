@@ -19,7 +19,7 @@
 							<div class="newsfeed-account__profile">
 								<div class="newsfeed-account__profile-details">
 									<img class="newsfeed-account__profile-image"
-										th:src="@{../assets/images/nobody.jpg}" />
+										th:src="@{~/assets/images/nobody.jpg}" />
 								</div>
 								<div class="newsfeed-account__profile-info">
 									<div class="newsfeed-account__profile-name">Nume</div>
@@ -55,7 +55,7 @@
 									<div id="photoProfile" style="display: none"
 										sec:authentication="principal.userDto.profilePhotoUrl" />
 									<img class="newsfeed-account__profile-image" id="profileUrlImg"
-										th:src="@{../assets/images/nobody.jpg}" />
+										th:src="@{~/assets/images/nobody.jpg}" />
 									<script th:inline="javascript">
 										/*<![CDATA[*/
 										var photo_url = $("#photoProfile")
@@ -133,6 +133,6 @@
 	});
 	initSample();
 </script>
-<script th:src="@{../assets/js/bootstrap.min.js}"></script>
-<script th:src="@{../assets/js/post-message.js}"></script>
+<script th:src="@{~/assets/js/bootstrap.min.js}"></script>
+<script th:src="@{~/assets/js/post-message.js}"></script>
 </html>
