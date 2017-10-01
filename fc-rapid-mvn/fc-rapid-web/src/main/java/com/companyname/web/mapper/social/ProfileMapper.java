@@ -52,7 +52,11 @@ public class ProfileMapper {
 		if (profileDto.getBirthDay() != null) {
 			profileModel.setBirthDay(profileDto.getBirthDay().toString());
 		}
-		profileModel.setFootballInfo(profileDto.getFootballInfo());
+		String info = "";
+		if (profileDto.getFootballInfo() != null) {
+			info = profileDto.getFootballInfo();
+		}
+		profileModel.setFootballInfo(info);
 		profileModel.setAddress(addressMapper.mapModel(profileDto.getAddressDto()));
 		if (profileDto.getActivities() != null) {
 			profileModel.setActivities(activityMapper.mapModelList(profileDto.getActivities()));

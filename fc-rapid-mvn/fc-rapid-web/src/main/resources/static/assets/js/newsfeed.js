@@ -235,6 +235,16 @@ function clearAndLoadPosts() {
 	document.getElementById("posts").innerHTML = "";
 	next_page = 1;
 	load_posts(0, selectedNewsFeed);
+	var postDisplay = $(".post-message-area").css("display");
+	if (postDisplay != "none") {
+		if(!$(event.target).closest('.post-message-area').length && !$(event.target).is('.post-message-area')) {
+			$(".overlay").hide();
+			$(".post-message-area").slideUp();
+			if ($( window ).width() > 768) {
+				$(".body").removeClass("overflow-hidden");
+			}
+		}	
+	}
 }
 
 function redirectToPost(id) {
